@@ -1,3 +1,6 @@
+import axios from 'axios'
+import { rejects } from 'assert'
+
 export default class Search {
     //1. Select DOM elements, and keep track of any useful data
     constructor() {
@@ -36,7 +39,11 @@ if(value != "" && value != this.previousValue) {
 }
 
 sendRequest() {
-    alert("sendRequest method just ran")
+    axios.post('/search', {searchTerm: this.inputField.value}).then(() => {
+
+    }).catch(() => {
+        alert("Hello, the search failed")
+    })
 }
 
 showLoaderIcon() {
