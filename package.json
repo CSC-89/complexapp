@@ -29,6 +29,7 @@
     "nodemon": "^1.19.4",
     "noderun": "^1.0.0",
     "sanitize-html": "^1.20.1",
+    "socket.io": "^2.3.0",
     "validator": "^12.0.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
