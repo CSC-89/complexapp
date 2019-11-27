@@ -15,6 +15,15 @@ exports.create = function(req, res) {
     })
 }
 
+exports.apiCreate = function(req, res) {
+  let post = new Post(req.body, req.apiUser._id)
+  post.create().then(function(newId){
+     res.json("Congrats")
+  }).catch(function(errors) {
+      res.json(errors)
+  })
+}
+
 exports.viewSingle = async function(req, res) {
     try {
         let post = await Post.findSingleById(req.params.id, req.visitorId)
@@ -76,6 +85,14 @@ exports.edit = function(req, res) {
         req.session.save(() => res.redirect('/'))
       })
   }
+
+  exports.apiDelete = function(req,res) {
+    Post.delete(req.params.id, req.apiUser._id).then(() => {
+      res.json("Success")
+    }).catch(() => {
+      res.json("You do not have permission to perform that action")
+    })
+}
 
   exports.search = function(req, res) {
     Post.search(req.body.searchTerm).then(posts => {
